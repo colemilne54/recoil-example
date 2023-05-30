@@ -13,15 +13,23 @@ function TodoItemCreator() {
   const setTodoList = useSetRecoilState(todoListState);
 
   const addItem = () => {
-    setTodoList((oldTodoList) => [
-      ...oldTodoList,
-      {
-        id: getId(),
-        text: inputValue,
-        isComplete: false
-      }
-    ]);
-    setInputValue("");
+    if(inputValue) {
+      setTodoList((oldTodoList) => [
+        ...oldTodoList,
+        {
+          id: getId(),
+          text: inputValue,
+          isComplete: false
+        }
+      ]);
+      setInputValue("");
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      addItem();
+    }
   };
 
   const onChange = ({ target: { value } }) => {
@@ -30,7 +38,7 @@ function TodoItemCreator() {
 
   return (
     <div>
-      <input type="text" value={inputValue} onChange={onChange} />
+      <input type="text" value={inputValue} onChange={onChange} onKeyDown={handleKeyDown} />
       <button onClick={addItem}>Add</button>
     </div>
   );

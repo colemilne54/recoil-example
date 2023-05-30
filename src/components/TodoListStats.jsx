@@ -19,7 +19,7 @@ const TodoListStats = () => {
       <li>Items completed: {totalCompletedNum}</li>
       <li>Items not completed: {totalUncompletedNum}</li>
       <li>Percent completed: {formattedPercentCompleted}</li>
-      <li>Text not completed: {allText}</li>
+      <li>Tasks not completed: {allText}</li>
     </ul>
   );
 };
